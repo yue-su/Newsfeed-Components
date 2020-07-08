@@ -85,8 +85,63 @@ const data = [
     thirdParagraph: `Hodor hodor - hodor... Hodor hodor hodor hodor. Hodor. Hodor! Hodor hodor, hodor hodor hodor hodor hodor; hodor hodor? Hodor!
           Hodor hodor, HODOR hodor, hodor hodor?! Hodor! Hodor hodor, HODOR hodor, hodor hodor, hodor, hodor hodor. Hodor, hodor.
           Hodor. Hodor, hodor, hodor. Hodor hodor... Hodor hodor hodor?! Hodor, hodor... Hodor hodor HODOR hodor, hodor hodor. Hodor.`
+  },
+  {
+    title: 'why do you need a cat',
+    date: 'Jan 1st, 2019',
+    firstParagraph: `Hodor hodor HODOR! Hodor hodor - hodor, hodor. Hodor hodor... Hodor hodor hodor; hodor hodor. Hodor hodor hodor, hodor, hodor
+          hodor. Hodor, hodor. Hodor. Hodor, hodor - hodor... Hodor hodor hodor; hodor HODOR hodor, hodor hodor?! Hodor hodor, hodor.
+          Hodor hodor hodor hodor hodor! Hodor hodor - HODOR hodor, hodor hodor hodor hodor hodor; hodor hodor? `,
+
+    secondParagraph: `Hodor, hodor. Hodor. Hodor, hodor, hodor. Hodor hodor, hodor. Hodor hodor, hodor, hodor hodor. Hodor! Hodor hodor, hodor;
+          hodor hodor hodor? Hodor, hodor. Hodor. Hodor, hodor - HODOR hodor, hodor hodor hodor! Hodor, hodor. Hodor. Hodor, HODOR
+          hodor, hodor hodor, hodor, hodor hodor. Hodor hodor - hodor - hodor... Hodor hodor hodor hodor hodor hodor hodor?! Hodor
+          hodor - hodor hodor hodor. Hodor. Hodor hodor... Hodor hodor hodor hodor hodor? `,
+
+    thirdParagraph: `Hodor hodor - hodor... Hodor hodor hodor hodor. Hodor. Hodor! Hodor hodor, hodor hodor hodor hodor hodor; hodor hodor? Hodor!
+          Hodor hodor, HODOR hodor, hodor hodor?! Hodor! Hodor hodor, HODOR hodor, hodor hodor, hodor, hodor hodor. Hodor, hodor.
+          Hodor. Hodor, hodor, hodor. Hodor hodor... Hodor hodor hodor?! Hodor, hodor... Hodor hodor HODOR hodor, hodor hodor. Hodor.`
   }
 ];
+
+function articleMaker(articleData) {
+
+  let article = document.createElement('div')
+  let articleTitle = document.createElement('h2')
+  let articleDate = document.createElement('p')
+  let articleBodyFirst = document.createElement('p')
+  let articleBodySecond = document.createElement('p')
+  let articleBodyThird = document.createElement('p')
+  let articleButton = document.createElement('span')
+
+  article.className = 'article article-open'
+  articleDate.className = 'date'
+  articleButton.className = 'expandButton'
+  
+  article.appendChild(articleTitle)
+  article.appendChild(articleDate)
+  article.appendChild(articleBodyFirst)
+  article.appendChild(articleBodySecond)
+  article.appendChild(articleBodyThird)
+  article.appendChild(articleButton)
+
+  articleTitle.textContent = articleData.title
+  articleDate.textContent = articleData.date
+  articleBodyFirst.textContent = articleData.firstParagraph
+  articleBodySecond.textContent = articleData.secondParagraph
+  articleBodyThird.textContent = articleData.thirdParagraph
+  articleButton.textContent = '+'
+
+  articleButton.addEventListener('click', () => article.classList.toggle('article-open'))
+
+  return article
+
+}
+
+let articles = document.querySelector('.articles')
+data.forEach((item) => articles.appendChild(articleMaker(item)))
+
+
 
 /* Step 1: Write a component called 'articleMaker' to create an article. You want your component to return markup like the template below: 
 
